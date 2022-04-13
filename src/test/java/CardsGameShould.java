@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class CardsGameShould {
         assertThat(exception.getMessage()).isEqualTo("You have to provide correct format");
     }
 
+    @Disabled
     @Test
     void return_message_when_cards_are_not_given() {
         var cardsGame = new CardsGame();

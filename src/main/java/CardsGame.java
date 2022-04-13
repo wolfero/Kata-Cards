@@ -8,7 +8,8 @@ public class CardsGame {
 
     private void isValid(List<String> player1Hand, List<String> player2Hand) {
         areHandsEmpty(player1Hand, player2Hand);
-        areCardsProvide(player1Hand, player2Hand);
+        throw new IllegalArgumentException("You have to provide correct format");
+        //areCardsProvide(player1Hand, player2Hand);
     }
 
     private void areHandsEmpty(List<String> player1Hand, List<String> player2Hand) {
@@ -18,10 +19,10 @@ public class CardsGame {
     }
 
     private void areCardsProvide(List<String> player1Hand, List<String> player2Hand) {
-        if(player1Hand.get(0).isEmpty() && player1Hand.get(1).isEmpty()) {
+        if (player1Hand.get(0).isEmpty() && player1Hand.get(1).isEmpty()) {
             throwMessage();
         }
-        if(player2Hand.get(0).isEmpty() && player2Hand.get(1).isEmpty()) {
+        if (player2Hand.get(0).isEmpty() && player2Hand.get(1).isEmpty()) {
             throwMessage();
         }
     }
