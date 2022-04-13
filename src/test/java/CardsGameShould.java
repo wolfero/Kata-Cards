@@ -16,7 +16,7 @@ public class CardsGameShould {
      * DONE --> (["",""],["",""]) -> throw exception "You have to provide a player cards"
      * DONE --> (["K",""],["A","J"]) -> throw exception "You have to provide a player cards"
      * DONE --> (["z",""],["5",""]) -> throw exception "You have to provide a valid card"
-     * TODO (["3",""],["A",""]) -> return "Player 2 win 1 to 0"
+     * DONE --> (["3",""],["A",""]) -> return "Player 2 win 1 to 0"
      * TODO (["K","9"],["J","5"]) -> return "Player 1 win 2 to 0"
      * TODO (["K","9"],["J","A"]) -> return "Players tied"
      * */
