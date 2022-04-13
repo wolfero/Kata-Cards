@@ -68,4 +68,9 @@ public class CardsGameShould {
     void return_winner_whit_only_one_card() {
         assertThat(cardsGame.startOut(List.of("3", ""), List.of("A", ""))).isEqualTo("Player 2 win 1 to 0");
     }
+
+    @Test
+    void return_winner_whit_two_cards() {
+        assertThat(cardsGame.startOut(List.of("K", "9"), List.of("J", "5"))).isEqualTo("Player 1 win 2 to 0");
+    }
 }
