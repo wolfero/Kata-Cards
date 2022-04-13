@@ -10,6 +10,7 @@ public class CardsGame {
     private void isValid(List<String> player1Hand, List<String> player2Hand) {
         areHandsEmpty(player1Hand, player2Hand);
         areCardsProvide(player1Hand, player2Hand);
+        throw new IllegalArgumentException("You have to provide a valid card");
     }
 
     private void areHandsEmpty(List<String> player1Hand, List<String> player2Hand) {
