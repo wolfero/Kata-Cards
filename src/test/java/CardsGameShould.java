@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -54,5 +53,14 @@ public class CardsGameShould {
         );
 
         assertThat(exception.getMessage()).isEqualTo("You have to provide a player cards");
+    }
+
+    @Test
+    void return_message_when_given_invalid_card() {
+        var exception = assertThrows(
+                IllegalArgumentException.class, () -> cardsGame.startOut(List.of("Z", "K"), List.of("J", "3"))
+        );
+
+        assertThat(exception.getMessage()).isEqualTo("You have to provide a valid card");
     }
 }
