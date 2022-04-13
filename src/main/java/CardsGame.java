@@ -10,5 +10,6 @@ public class CardsGame {
         if (player1Card.isEmpty() || player2Card.isEmpty()) {
             throw new IllegalArgumentException("You have to provide correct format");
         }
+        throw new IllegalArgumentException("You have to provide a player card");
     }
 }
