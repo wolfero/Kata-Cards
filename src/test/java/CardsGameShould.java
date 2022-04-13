@@ -29,6 +29,15 @@ public class CardsGameShould {
     }
 
     @Test
+    void return_to_message_when_hands_are_missing_two_cards() {
+        var cardsGame = new CardsGame();
+
+        var exception = assertThrows(IllegalArgumentException.class, () -> cardsGame.startOut(List.of(""), List.of("", "")));
+
+        assertThat(exception.getMessage()).isEqualTo("You have to provide correct format");
+    }
+
+    @Test
     void return_message_when_cards_are_not_given() {
         var cardsGame = new CardsGame();
 
