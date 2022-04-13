@@ -4,7 +4,10 @@ public class CardsGame {
     public String startOut(List<String> player1Hand, List<String> player2Hand) {
         isValid(player1Hand, player2Hand);
 
-        return "";
+        final var firstCardPlayer1 = CARD_RANK.indexOf(player1Hand.get(0).toUpperCase());
+        final var firstCardPlayer2 = CARD_RANK.indexOf(player2Hand.get(0).toUpperCase());
+        if (firstCardPlayer1 > firstCardPlayer2) return "Player 1 win 1 to 0";
+        return "Player 2 win 1 to 0";
     }
 
     private void isValid(List<String> player1Hand, List<String> player2Hand) {
