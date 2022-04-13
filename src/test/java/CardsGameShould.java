@@ -15,7 +15,7 @@ public class CardsGameShould {
      * DONE --> ([""],["",""]) -> throw exception "You have to provide correct format"
      * DONE --> (["",""],["",""]) -> throw exception "You have to provide a player cards"
      * DONE --> (["K",""],["A","J"]) -> throw exception "You have to provide a player cards"
-     * TODO (["z",""],["5",""]) -> throw exception "You have to provide a valid card"
+     * DONE --> (["z",""],["5",""]) -> throw exception "You have to provide a valid card"
      * TODO (["3",""],["A",""]) -> return "Player 2 win 1 to 0"
      * TODO (["K","9"],["J","5"]) -> return "Player 1 win 2 to 0"
      * TODO (["K","9"],["J","A"]) -> return "Players tied"
@@ -40,7 +40,7 @@ public class CardsGameShould {
     @Test
     void return_message_when_hands_are_missing_two_cards() {
         var exception = assertThrows(
-                IllegalArgumentException.class, () -> cardsGame.startOut(List.of(""), List.of("", ""))
+                IllegalArgumentException.class, () -> cardsGame.startOut(List.of("3"), List.of("J", "K"))
         );
 
         assertThat(exception.getMessage()).isEqualTo("You have to provide correct format");
@@ -62,5 +62,10 @@ public class CardsGameShould {
         );
 
         assertThat(exception.getMessage()).isEqualTo("You have to provide a valid card");
+    }
+
+    @Test
+    void return_winner_whit_only_one_card() {
+        assertThat(cardsGame.startOut(List.of("3", ""), List.of("A", ""))).isEqualTo("Player 2 win 1 to 0");
     }
 }
