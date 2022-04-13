@@ -7,14 +7,46 @@ public class CardsGame {
         return whoIsWinner(player1Hand, player2Hand);
     }
 
-    final List<String> CARD_RANK = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A");
+    final List<String> CARDS_RANK = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A");
 
     private String whoIsWinner(List<String> player1Card, List<String> player2Card) {
-        final var sumOfPlayer1Cards = CARD_RANK.indexOf(player1Card.get(0).toUpperCase());
+        var winsPlayer1 = 0;
+        var winsPlayer2 = 0;
+        var Player1Card = playerCardSize(cardFormatted(player1Card, 0));
+        var Player2Card = playerCardSize(cardFormatted(player2Card, 0));
 
-        final var sumOfPlayer2Cards = CARD_RANK.indexOf(player2Card.get(0).toUpperCase());
-        if (sumOfPlayer1Cards > sumOfPlayer2Cards) return "Player 1 win 1 to 0";
-        return "Player 2 win 1 to 0";
+        winsPlayer1 += player1Win(Player1Card, Player2Card);
+        winsPlayer2 += player2Win(Player1Card, Player2Card);
+
+        Player1Card = playerCardSize(cardFormatted(player1Card, 1));
+        Player2Card = playerCardSize(cardFormatted(player2Card, 1));
+
+        winsPlayer1 += player1Win(Player1Card, Player2Card);
+        winsPlayer2 += player2Win(Player1Card, Player2Card);
+
+        if (winsPlayer1 > winsPlayer2) {
+            return (winsPlayer1 == 1) ? "Player 1 win 1 to 0" : "Player 1 win 2 to 0";
+        }
+        if (winsPlayer1 < winsPlayer2) {
+            return (winsPlayer2 == 1) ? "Player 2 win 1 to 0" : "Player 2 win 2 to 0";
+        }
+        return "";
+    }
+
+    private int player1Win(int Player1Card, int Player2Card) {
+        return (Player1Card > Player2Card) ? 1 : 0;
+    }
+
+    private int player2Win(int Player1Card, int Player2Card) {
+        return (Player1Card < Player2Card) ? 1 : 0;
+    }
+
+    private int playerCardSize(String card) {
+        return CARDS_RANK.indexOf(card);
+    }
+
+    private String cardFormatted(List<String> Hand, int position) {
+        return Hand.get(position).toUpperCase();
     }
 
     private void isValid(List<String> player1Hand, List<String> player2Hand) {
@@ -49,11 +81,11 @@ public class CardsGame {
     }
 
     private void areCardsValid(List<String> player1Hand, List<String> player2Hand) {
-        var player1Cards = CARD_RANK.contains(player1Hand.get(0).toUpperCase());
-        player1Cards &= CARD_RANK.contains(player1Hand.get(1).toUpperCase());
+        var player1Cards = CARDS_RANK.contains(cardFormatted(player1Hand, 0));
+        player1Cards &= CARDS_RANK.contains(cardFormatted(player1Hand, 1));
 
-        var player2Cards = CARD_RANK.contains(player2Hand.get(0).toUpperCase());
-        player2Cards &= CARD_RANK.contains(player2Hand.get(1).toUpperCase());
+        var player2Cards = CARDS_RANK.contains(cardFormatted(player2Hand, 0));
+        player2Cards &= CARDS_RANK.contains(cardFormatted(player2Hand, 1));
 
         if (!player1Cards && player2Cards) {
             throwMessage("You have to provide a valid card");
