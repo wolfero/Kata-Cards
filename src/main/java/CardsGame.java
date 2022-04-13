@@ -24,10 +24,11 @@ public class CardsGame {
 
         if (winsPlayer1 > winsPlayer2) {
             return (winsPlayer1 == 1) ? "Player 1 win 1 to 0" : "Player 1 win 2 to 0";
-        } else if (winsPlayer1 < winsPlayer2) {
+        }
+        if (winsPlayer1 < winsPlayer2) {
             return (winsPlayer2 == 1) ? "Player 2 win 1 to 0" : "Player 2 win 2 to 0";
         }
-        return "";
+        return "Players tied";
     }
 
     private int shouldPlayer1Win(int Player1Card, int Player2Card) {
