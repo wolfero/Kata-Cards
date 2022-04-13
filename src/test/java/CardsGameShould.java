@@ -73,4 +73,9 @@ public class CardsGameShould {
     void return_winner_whit_two_cards() {
         assertThat(cardsGame.startOut(List.of("K", "9"), List.of("J", "5"))).isEqualTo("Player 1 win 2 to 0");
     }
+
+    @Test
+    void return_tied_if_no_body_win() {
+        assertThat(cardsGame.startOut(List.of("K", "A"), List.of("A", "K"))).isEqualTo("Players tied");
+    }
 }
