@@ -9,44 +9,7 @@ public class CardsGame {
 
     final List<String> CARDS_RANK = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A");
 
-    private String whoIsWinner(List<String> player1Hand, List<String> player2Hand) {
-        int winsPlayer1 = 0;
-        var winsPlayer2 = 0;
-        var Player1Card = 0;
-        var Player2Card = 0;
-
-        for (int position = 0; position < player1Hand.size(); position++) {
-            Player1Card = playerCardSize(formattedCard(player1Hand, position));
-            Player2Card = playerCardSize(formattedCard(player2Hand, position));
-            winsPlayer1 += shouldPlayer1Win(Player1Card, Player2Card);
-            winsPlayer2 += shouldPlayer2Win(Player1Card, Player2Card);
-        }
-
-        if (winsPlayer1 > winsPlayer2) {
-            return (winsPlayer1 == 1) ? "Player 1 win 1 to 0" : "Player 1 win 2 to 0";
-        }
-        if (winsPlayer1 < winsPlayer2) {
-            return (winsPlayer2 == 1) ? "Player 2 win 1 to 0" : "Player 2 win 2 to 0";
-        }
-        return "Players tied";
-    }
-
-    private int shouldPlayer1Win(int Player1Card, int Player2Card) {
-        return (Player1Card > Player2Card) ? 1 : 0;
-    }
-
-    private int shouldPlayer2Win(int Player1Card, int Player2Card) {
-        return (Player1Card < Player2Card) ? 1 : 0;
-    }
-
-    private int playerCardSize(String card) {
-        return CARDS_RANK.indexOf(card);
-    }
-
-    private String formattedCard(List<String> Hand, int position) {
-        return Hand.get(position).toUpperCase();
-    }
-
+    // Region isValid
     private void isValid(List<String> player1Hand, List<String> player2Hand) {
         areHandsEmpty(player1Hand, player2Hand);
 
@@ -90,13 +53,60 @@ public class CardsGame {
         }
     }
 
+    private void throwMessage(String message) {
+        throw new IllegalArgumentException(message);
+    }
+
+    // End Region
+
+    // Region whoIsWinner
+
+    private String whoIsWinner(List<String> player1Hand, List<String> player2Hand) {
+        int winsPlayer1 = 0;
+        var winsPlayer2 = 0;
+        var Player1Card = 0;
+        var Player2Card = 0;
+
+        for (int position = 0; position < player1Hand.size(); position++) {
+            Player1Card = playerCardSize(formattedCard(player1Hand, position));
+            Player2Card = playerCardSize(formattedCard(player2Hand, position));
+            winsPlayer1 += shouldPlayer1Win(Player1Card, Player2Card);
+            winsPlayer2 += shouldPlayer2Win(Player1Card, Player2Card);
+        }
+
+        if (winsPlayer1 > winsPlayer2) {
+            return (winsPlayer1 == 1) ? "Player 1 win 1 to 0" : "Player 1 win 2 to 0";
+        }
+        if (winsPlayer1 < winsPlayer2) {
+            return (winsPlayer2 == 1) ? "Player 2 win 1 to 0" : "Player 2 win 2 to 0";
+        }
+        return "Players tied";
+    }
+
+    private int shouldPlayer1Win(int Player1Card, int Player2Card) {
+        return (Player1Card > Player2Card) ? 1 : 0;
+    }
+
+    private int shouldPlayer2Win(int Player1Card, int Player2Card) {
+        return (Player1Card < Player2Card) ? 1 : 0;
+    }
+
+    // End Region
+
+    // Region Helpers
+    private String formattedCard(List<String> Hand, int position) {
+        return Hand.get(position).toUpperCase();
+    }
+
+    private int playerCardSize(String card) {
+        return CARDS_RANK.indexOf(card);
+    }
+
     private int numberOfCardsInHand(List<String> hand) {
         if (hand.get(0).isEmpty() && hand.get(1).isEmpty()) return 0;
         if (hand.get(0).isEmpty() || hand.get(1).isEmpty()) return 1;
         return 2;
     }
 
-    private void throwMessage(String message) {
-        throw new IllegalArgumentException(message);
-    }
+    // End Region
 }

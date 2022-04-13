@@ -8,19 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CardsGameShould {
-    /*
-     * CARDS RANK -> ["1","2","3","4","5","6","7","8","9","10","J","Q","K","A"]
-     *
-     * DONE --> ([],[]) -> throw exception "You have to provide correct format"
-     * DONE --> ([""],["",""]) -> throw exception "You have to provide correct format"
-     * DONE --> (["",""],["",""]) -> throw exception "You have to provide a player cards"
-     * DONE --> (["K",""],["A","J"]) -> throw exception "You have to provide a player cards"
-     * DONE --> (["z",""],["5",""]) -> throw exception "You have to provide a valid card"
-     * DONE --> (["3",""],["A",""]) -> return "Player 2 win 1 to 0"
-     * DONE --> (["K","9"],["J","5"]) -> return "Player 1 win 2 to 0"
-     * TODO (["K","A"],["A","K"]) -> return "Players tied"
-     * */
-
     private CardsGame cardsGame;
 
     @BeforeEach
