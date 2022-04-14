@@ -12,6 +12,16 @@ describe("Cards Game Should", () => {
         "You have to provide correct format"
       );
     });
+    it("Returns message when player cards are invalid", () => {
+      const cardsGame = new CardsGame();
+      
+      const player1Hand:string[]= ["",""];
+      const player2Hand:string[]= ["",""];
+
+      expect(() => cardsGame.play(player1Hand,player2Hand)).toThrowError(
+        "You have to provide valid cards"
+      );
+    });
     
   });
 
