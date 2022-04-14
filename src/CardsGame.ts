@@ -1,10 +1,10 @@
 export class CardsGame {
-  private readonly CARDS_VALUES:string[] = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
+  private readonly CARDS_VALUES: string[] = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 
   public play(player1Hand: string[], player2Hand: string[]): string {
     this.validate(player1Hand, player2Hand);
 
-    return this.whoIsWinner(player1Hand,player2Hand)
+    return this.whoIsWinner(player1Hand, player2Hand);
   }
 
   private validate(player1Hand: string[], player2Hand: string[]): void {
@@ -19,19 +19,22 @@ export class CardsGame {
     const hadEmptyHand = player1Hand.length != 2 && player2Hand.length != 2;
     if (hadEmptyHand) throw new Error("You have to provide correct format");
   }
-  
+
   private hadValidCards([card1, card2]: string[]): void {
     const leftCard = this.CARDS_VALUES.includes(card1.toUpperCase());
     const rightCard = this.CARDS_VALUES.includes(card2.toUpperCase());
-    if (!(leftCard && rightCard)) throw new Error("You have to provide valid cards");
+    if (!(leftCard && rightCard))
+      throw new Error("You have to provide valid cards");
   }
 
   private whoIsWinner(player1Hand: string[], player2Hand: string[]): string {
     const player1CardsValue = this.getCardsValue(player1Hand);
     const player2CardsValue = this.getCardsValue(player2Hand);
 
-    if(this.shouldPlayer1Win(player1CardsValue, player2CardsValue))  return "Player 1 wins";
-    if(this.shouldPlayer2Win(player1CardsValue, player2CardsValue))  return "Player 2 wins";
+    if (this.shouldPlayer1Win(player1CardsValue, player2CardsValue))
+      return "Player 1 wins";
+    if (this.shouldPlayer2Win(player1CardsValue, player2CardsValue))
+      return "Player 2 wins";
     return "Players tied";
   }
 
@@ -41,7 +44,7 @@ export class CardsGame {
     return leftCardValue + rightCardValue;
   }
 
-  private shouldPlayer1Win(player1CardsValue:number, player2CardsValue:number): boolean {
+  private shouldPlayer1Win(player1CardsValue: number, player2CardsValue: number): boolean {
     return player1CardsValue > player2CardsValue;
   }
 
