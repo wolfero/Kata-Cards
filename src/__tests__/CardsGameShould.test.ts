@@ -1,10 +1,14 @@
 import { CardsGame } from "../CardsGame";
 
 describe("Cards Game Should", () => {
+  let cardsGame: CardsGame;
+
+  beforeEach(() => {
+    cardsGame = new CardsGame();
+  });
+  
   describe("Exception handling", () => {
     it("Returns message when player hands are empty", () => {
-      const cardsGame = new CardsGame();
-      
       const player1Hand:string[]= [];
       const player2Hand:string[]= [];
 
@@ -13,8 +17,6 @@ describe("Cards Game Should", () => {
       );
     });
     it("Returns message when player cards are invalid", () => {
-      const cardsGame = new CardsGame();
-      
       const player1Hand:string[]= ["",""];
       const player2Hand:string[]= ["",""];
 
@@ -26,8 +28,6 @@ describe("Cards Game Should", () => {
 
   describe("Winner", () => {
     it("Returns winner", () => {
-      const cardsGame = new CardsGame();
-      
       const player1Hand:string[]= ["k","j"];
       const player2Hand:string[]= ["6","3"];
 

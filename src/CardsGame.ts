@@ -3,10 +3,17 @@ export class CardsGame {
 
   public play(player1Hand:string[],player2Hand:string[]): string {
     this.validate(player1Hand,player2Hand);
+
+    const player1CardsValue = this.getCardsValue(player1Hand);
+    const player2CardsValue = this.getCardsValue(player2Hand);
     
-    return "";
+    return (player1CardsValue > player2CardsValue)?"Player 1 wins" : "Player 2 wins";
+  }
+  private getCardsValue([leftCard,rightCard]:string[]):number {
+    return this.CARDS_VALUES.indexOf(leftCard.toUpperCase()) + this.CARDS_VALUES.indexOf(rightCard.toUpperCase());
   }
 
+  // TODO: refactor validate
   private validate(player1Hand:string[],player2Hand:string[]): void {
     const hadEmptyHand = this.hadEmptyHands(player1Hand, player2Hand);
     if(hadEmptyHand){
@@ -19,12 +26,14 @@ export class CardsGame {
     }
   }
 
+  
+  private hadEmptyHands(player1Hand: string[], player2Hand: string[]):boolean {
+    return player1Hand.length != 2 && player2Hand.length != 2;
+  }
+
+  // TODO: refactor isValidCard
   private isValidCard([card1, card2]: string[]):boolean {
     if (this.CARDS_VALUES.includes(card1.toUpperCase()) && this.CARDS_VALUES.includes(card2.toUpperCase())) return true;
     return false;
-  }
-
-  private hadEmptyHands(player1Hand: string[], player2Hand: string[]):boolean {
-    return player1Hand.length != 2 && player2Hand.length != 2;
   }
 }
