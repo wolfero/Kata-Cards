@@ -20,7 +20,7 @@ export class CardsGame {
   }
 
   private isValidCard([card1, card2]: string[]):boolean {
-    if (this.CARDS_VALUES.includes(card1) && this.CARDS_VALUES.includes(card2)) return true;
+    if (this.CARDS_VALUES.includes(card1.toUpperCase()) && this.CARDS_VALUES.includes(card2.toUpperCase())) return true;
     return false;
   }
 

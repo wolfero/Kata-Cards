@@ -22,7 +22,17 @@ describe("Cards Game Should", () => {
         "You have to provide valid cards"
       );
     });
-    
+  });
+
+  describe("Winner", () => {
+    it("Returns winner", () => {
+      const cardsGame = new CardsGame();
+      
+      const player1Hand:string[]= ["k","j"];
+      const player2Hand:string[]= ["6","3"];
+
+      expect(cardsGame.play(player1Hand,player2Hand)).toBe("Player 1 wins");
+    });
   });
 
 });
