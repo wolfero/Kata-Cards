@@ -1,5 +1,5 @@
 export class CardsGame {
-  public start(): string {
+  public play(player1Hand:string[],player2Hand:string[]): string {
     return "";
   }
 }
