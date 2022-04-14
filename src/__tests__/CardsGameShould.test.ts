@@ -33,5 +33,11 @@ describe("Cards Game Should", () => {
 
       expect(cardsGame.play(player1Hand, player2Hand)).toBe("Player 1 wins");
     });
+    it("Returns tied if nobody is winner", () => {
+      const player1Hand: string[] = ["A", "2"];
+      const player2Hand: string[] = ["2", "A"];
+
+      expect(cardsGame.play(player1Hand, player2Hand)).toBe("Players tied");
+    });
   });
 });
