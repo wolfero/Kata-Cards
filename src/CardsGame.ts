@@ -1,39 +1,40 @@
 export class CardsGame {
   private readonly CARDS_VALUES:string[] = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
 
-  public play(player1Hand:string[],player2Hand:string[]): string {
-    this.validate(player1Hand,player2Hand);
+  public play(player1Hand: string[], player2Hand: string[]): string {
+    this.validate(player1Hand, player2Hand);
 
+    return this.whoIsWinner(player1Hand,player2Hand)
+  }
+
+  private validate(player1Hand: string[], player2Hand: string[]): void {
+    this.hadEmptyHands(player1Hand, player2Hand);
+
+    this.hadValidCards(player1Hand);
+
+    this.hadValidCards(player2Hand);
+  }
+
+  private hadEmptyHands(player1Hand: string[], player2Hand: string[]): void {
+    const hadEmptyHand = player1Hand.length != 2 && player2Hand.length != 2;
+    if (hadEmptyHand) throw new Error("You have to provide correct format");
+  }
+  
+  private hadValidCards([card1, card2]: string[]): void {
+    const leftCard = this.CARDS_VALUES.includes(card1.toUpperCase());
+    const rightCard = this.CARDS_VALUES.includes(card2.toUpperCase());
+    if (!(leftCard && rightCard)) throw new Error("You have to provide valid cards");
+  }
+
+  private whoIsWinner(player1Hand: string[], player2Hand: string[]): string {
     const player1CardsValue = this.getCardsValue(player1Hand);
     const player2CardsValue = this.getCardsValue(player2Hand);
-    
     return (player1CardsValue > player2CardsValue)?"Player 1 wins" : "Player 2 wins";
   }
-  private getCardsValue([leftCard,rightCard]:string[]):number {
-    return this.CARDS_VALUES.indexOf(leftCard.toUpperCase()) + this.CARDS_VALUES.indexOf(rightCard.toUpperCase());
-  }
 
-  // TODO: refactor validate
-  private validate(player1Hand:string[],player2Hand:string[]): void {
-    const hadEmptyHand = this.hadEmptyHands(player1Hand, player2Hand);
-    if(hadEmptyHand){
-      throw new Error("You have to provide correct format");
-    }
-    
-    const shouldValidCard=this.isValidCard(player1Hand)&& this.isValidCard(player2Hand);
-    if(!shouldValidCard){
-      throw new Error("You have to provide valid cards");
-    }
-  }
-
-  
-  private hadEmptyHands(player1Hand: string[], player2Hand: string[]):boolean {
-    return player1Hand.length != 2 && player2Hand.length != 2;
-  }
-
-  // TODO: refactor isValidCard
-  private isValidCard([card1, card2]: string[]):boolean {
-    if (this.CARDS_VALUES.includes(card1.toUpperCase()) && this.CARDS_VALUES.includes(card2.toUpperCase())) return true;
-    return false;
+  private getCardsValue([leftCard, rightCard]: string[]): number {
+    const leftCardValue = this.CARDS_VALUES.indexOf(leftCard.toUpperCase());
+    const rightCardValue = this.CARDS_VALUES.indexOf(rightCard.toUpperCase());
+    return leftCardValue + rightCardValue;
   }
 }

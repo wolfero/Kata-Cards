@@ -6,21 +6,21 @@ describe("Cards Game Should", () => {
   beforeEach(() => {
     cardsGame = new CardsGame();
   });
-  
+
   describe("Exception handling", () => {
     it("Returns message when player hands are empty", () => {
-      const player1Hand:string[]= [];
-      const player2Hand:string[]= [];
+      const player1Hand: string[] = [];
+      const player2Hand: string[] = [];
 
-      expect(() => cardsGame.play(player1Hand,player2Hand)).toThrowError(
+      expect(() => cardsGame.play(player1Hand, player2Hand)).toThrowError(
         "You have to provide correct format"
       );
     });
     it("Returns message when player cards are invalid", () => {
-      const player1Hand:string[]= ["",""];
-      const player2Hand:string[]= ["",""];
+      const player1Hand: string[] = ["", ""];
+      const player2Hand: string[] = ["", ""];
 
-      expect(() => cardsGame.play(player1Hand,player2Hand)).toThrowError(
+      expect(() => cardsGame.play(player1Hand, player2Hand)).toThrowError(
         "You have to provide valid cards"
       );
     });
@@ -28,11 +28,10 @@ describe("Cards Game Should", () => {
 
   describe("Winner", () => {
     it("Returns winner", () => {
-      const player1Hand:string[]= ["k","j"];
-      const player2Hand:string[]= ["6","3"];
+      const player1Hand: string[] = ["k", "j"];
+      const player2Hand: string[] = ["6", "3"];
 
-      expect(cardsGame.play(player1Hand,player2Hand)).toBe("Player 1 wins");
+      expect(cardsGame.play(player1Hand, player2Hand)).toBe("Player 1 wins");
     });
   });
-
 });
