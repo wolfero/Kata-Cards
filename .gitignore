@@ -1,2 +1,6 @@
-/target/
-/.idea/
+node_modules
+build
+.vscode
+.idea
+coverage
+package-lock.json
