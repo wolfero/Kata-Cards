@@ -29,7 +29,13 @@ export class CardsGame {
   private whoIsWinner(player1Hand: string[], player2Hand: string[]): string {
     const player1CardsValue = this.getCardsValue(player1Hand);
     const player2CardsValue = this.getCardsValue(player2Hand);
-    return (player1CardsValue > player2CardsValue)?"Player 1 wins" : "Player 2 wins";
+    if(player1CardsValue > player2CardsValue){
+      return "Player 1 wins";
+    }
+    if(player1CardsValue < player2CardsValue){
+      return "Player 2 wins";
+    }
+    return "Players tied";
   }
 
   private getCardsValue([leftCard, rightCard]: string[]): number {
