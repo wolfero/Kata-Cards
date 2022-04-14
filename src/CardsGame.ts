@@ -29,12 +29,9 @@ export class CardsGame {
   private whoIsWinner(player1Hand: string[], player2Hand: string[]): string {
     const player1CardsValue = this.getCardsValue(player1Hand);
     const player2CardsValue = this.getCardsValue(player2Hand);
-    if(player1CardsValue > player2CardsValue){
-      return "Player 1 wins";
-    }
-    if(player1CardsValue < player2CardsValue){
-      return "Player 2 wins";
-    }
+
+    if(this.shouldPlayer1Win(player1CardsValue, player2CardsValue))  return "Player 1 wins";
+    if(this.shouldPlayer2Win(player1CardsValue, player2CardsValue))  return "Player 2 wins";
     return "Players tied";
   }
 
@@ -42,5 +39,13 @@ export class CardsGame {
     const leftCardValue = this.CARDS_VALUES.indexOf(leftCard.toUpperCase());
     const rightCardValue = this.CARDS_VALUES.indexOf(rightCard.toUpperCase());
     return leftCardValue + rightCardValue;
+  }
+
+  private shouldPlayer1Win(player1CardsValue:number, player2CardsValue:number): boolean {
+    return player1CardsValue > player2CardsValue;
+  }
+
+  private shouldPlayer2Win(player1CardsValue: number, player2CardsValue: number) {
+    return player1CardsValue < player2CardsValue;
   }
 }
