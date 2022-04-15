@@ -14,3 +14,8 @@ class TestCardsGame(TestCase):
         cardGame = CardGame()
 
         assert_that(cardGame.play).raises(ValueError).when_called_with(["z", "f"], ["f", "f"])
+        
+    def test_returns_winner(self):
+        cardGame = CardGame()
+        
+        assert_that(cardGame.play(["K", "J"], ["K", "2"])).is_equal_to("Player 1 wins")
