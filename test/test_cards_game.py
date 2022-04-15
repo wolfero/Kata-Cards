@@ -19,3 +19,8 @@ class TestCardsGame(TestCase):
         cardGame = CardGame()
         
         assert_that(cardGame.play(["K", "J"], ["K", "2"])).is_equal_to("Player 1 wins")
+    
+    def test_returns_draw_if_nobody_is_winner(self):
+        cardGame = CardGame()
+        
+        assert_that(cardGame.play(["Q", "A"], ["A", "Q"])).is_equal_to("Draw")
