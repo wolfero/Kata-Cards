@@ -1,2 +1,14 @@
-/target/
-/.idea/
+.idea/
+.vscode/
+.pytest_cache/
+.coverage
+__pycache__/
+*.py[cod]
+*$py.class
+.hypothesis/
+
+# Ejemplo
+src/narcissistic_number.py
+
+src/word_wrap.py
+test/test_word_wrap.py
