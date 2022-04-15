@@ -9,7 +9,9 @@ class CardGame:
     def isValid(self, player1Hand: list, player2Hand: list):
         self.hadEmptyHand(player1Hand, player2Hand)
 
-        # self.hadValidCards(player1Hand, player2Hand)
+    def hadEmptyHand(self, player1Hand: list, player2Hand: list):
+        if len(player1Hand) != 2 or len(player2Hand) != 2:
+            raise ValueError("You have to provide correct format")
 
     def whoWins(self, player1Hand: list, player2Hand: list) -> str:
         player1Value = self.getCardsValue(
@@ -25,7 +27,3 @@ class CardGame:
 
     def getCardsValue(self, leftCard: str, rightCard) -> int:
         return self.CARDS_VALUES.index(leftCard.upper()) + self.CARDS_VALUES.index(rightCard.upper())
-
-    def hadEmptyHand(self, player1Hand: list, player2Hand: list):
-        if len(player1Hand) != 2 or len(player2Hand) != 2:
-            raise ValueError("You have to provide correct format")
