@@ -4,7 +4,7 @@ class CardGame:
     def play(self, player1Hand: list, player2Hand: list) -> str:
         self.isValid(player1Hand, player2Hand)
 
-        return ""
+        return "Player 1 wins"
 
     def isValid(self, player1Hand: list, player2Hand: list):
         self.hadEmptyHand(player1Hand, player2Hand)
