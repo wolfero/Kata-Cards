@@ -11,5 +11,4 @@ class TestCardsGame(TestCase):
         player1 = ["", ""]
         player2 = ["", ""]
 
-        assert_that(cardGame.play(player1, player2)).is_equal_to(
-            'You have to provide correct format')
+        assert_that(cardGame.play).raises(ValueError).when_called_with(player1, player2)
