@@ -62,7 +62,7 @@ public class GameShould {
     }
 
     @Test
-    void return_tied_if_no_body_win() {
+    void return_tied_if_nobody_win() {
         assertThat(cardsGame.startOut(List.of("K", "A"), List.of("A", "K"))).isEqualTo("Players tied");
     }
 }
