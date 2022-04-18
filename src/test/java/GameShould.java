@@ -7,12 +7,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CardsGameShould {
-    private CardsGame cardsGame;
+public class GameShould {
+    private Game cardsGame;
 
     @BeforeEach
     void init() {
-        cardsGame = new CardsGame();
+        cardsGame = new Game();
     }
 
     @Test
