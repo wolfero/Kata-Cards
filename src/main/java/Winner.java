@@ -2,10 +2,10 @@ import java.util.List;
 
 public class Winner {
 
-    private final Helpers helper;
+    private final Format helper;
 
     public Winner() {
-        helper = new Helpers();
+        helper = new Format();
     }
 
     public String is(List<String> player1Hand, List<String> player2Hand) {
@@ -13,8 +13,8 @@ public class Winner {
         var winsPlayer2 = 0;
 
         for (var position = 0; position < 2; position++) {
-            var player1Card = helper.formattedCard(player1Hand, position);
-            var player2Card = helper.formattedCard(player2Hand, position);
+            var player1Card = helper.card(player1Hand, position);
+            var player2Card = helper.card(player2Hand, position);
 
             var Player1CardSize = helper.playerCardSize(player1Card);
             var Player2CardSize = helper.playerCardSize(player2Card);
@@ -24,10 +24,14 @@ public class Winner {
         }
 
         if (winsPlayer1 > winsPlayer2) {
-            return (winsPlayer1 == 1) ? messageWinOneGame("Player 1") : messageWinTwoGame("Player 1");
+            return (winsPlayer1 == 1) ?
+                    messageWinOneGame("Player 1") :
+                    messageWinTwoGame("Player 1");
         }
         if (winsPlayer1 < winsPlayer2) {
-            return (winsPlayer2 == 1) ? messageWinOneGame("Player 2") : messageWinTwoGame("Player 2");
+            return (winsPlayer2 == 1) ?
+                    messageWinOneGame("Player 2") :
+                    messageWinTwoGame("Player 2");
         }
         return messageTied();
     }

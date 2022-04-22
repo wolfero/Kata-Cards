@@ -1,11 +1,11 @@
 import java.util.List;
 
-public class Rules {
+public class Constraints {
     public static final List<String> CARDS_RANK = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A");
-    private final Helpers helpers;
+    private final Format helpers;
 
-    public Rules() {
-        helpers = new Helpers();
+    public Constraints() {
+        helpers = new Format();
     }
 
     public void isValid(List<String> player1Hand, List<String> player2Hand) {
@@ -33,7 +33,9 @@ public class Rules {
     private void areCardsProvide(List<String> player1Hand, List<String> player2Hand) {
         final int numberOfCardsPlayer1 = helpers.numberOfCardsInHand(player1Hand);
         final int numberOfCardsPlayer2 = helpers.numberOfCardsInHand(player2Hand);
+
         final boolean differentCardsNumberInHand = numberOfCardsPlayer1 != numberOfCardsPlayer2;
+
         if (differentCardsNumberInHand) {
             throwMessage("You have to provide a player cards");
         }
@@ -44,8 +46,8 @@ public class Rules {
         var player2ValidCards = true;
 
         for (int position = 0; position < 2; position++) {
-            var player1FormattedCard = helpers.formattedCard(player1Hand, position);
-            var player2FormattedCard = helpers.formattedCard(player2Hand, position);
+            var player1FormattedCard = helpers.card(player1Hand, position);
+            var player2FormattedCard = helpers.card(player2Hand, position);
 
             player1ValidCards &= CARDS_RANK.contains(player1FormattedCard);
             player2ValidCards &= CARDS_RANK.contains(player2FormattedCard);
